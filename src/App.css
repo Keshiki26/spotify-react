@@ -10,10 +10,7 @@
 	min-height: 100vh;
 	background-color: black;
 }
-.right-cont {
-	background-color: blueviolet;
-	min-height: 100vh;
-}
+
 .colorMode-cl {
 	color: rgb(255, 255, 255) !important;
 }

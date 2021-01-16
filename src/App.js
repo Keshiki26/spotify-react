@@ -1,24 +1,27 @@
 import './App.css';
-import { loginUrl } from './api';
 import React, { Component, useEffect, useState } from 'react';
 import axios from 'axios';
 import { Button, Grid, IconButton } from '@material-ui/core';
-import LeftNav from './Components/LeftNav/LeftNav';
 import NightsStayIcon from '@material-ui/icons/NightsStay';
+import { withRouter } from 'react-router-dom';
+import WindowsRoute from './WindowsRoute';
+import LoginPage from './LoginPage';
 // /#access_token=BQCPqe5K4sNm1Ml4XhG_sOedRBn2PNkO2uOhtR4b9b2fvQ3I3dEVpZOkpqgL8dO6j9h1DPOZEAjk7Eo69N8YFH7LvhqOwIAz5qjdfm5IhFtnMu2JcIvbLc350eboM3jF9pRe2qPQcM2gvwUUKT7N0DoX6w&token_type=Bearer&expires_in=3600
 class App extends Component {
 	state = {
 		userInfo: null,
+		access_token: '',
 		userPlaylists: [],
 		colorMode: 'Dark',
-		contentPage: 'Profile',
+		contentPage: '',
 	};
 
 	componentDidMount = () => {
+		const { match, location, history } = this.props;
+
 		const access_token = new URLSearchParams(
-			window.location.hash.substring(1).split('&')[0]
+			location.pathname.substring(1).split('&')[0]
 		).get('access_token');
-		window.location.hash = '';
 		const headers = {
 			headers: { Authorization: 'Bearer ' + access_token },
 		};
@@ -27,49 +30,54 @@ class App extends Component {
 			.create(headers)
 			.get('https://api.spotify.com/v1/me')
 			.then((r) => {
-				this.setState({ userInfo: r.data });
-
+				this.setState({ userInfo: r.data, access_token });
 				const id = r.data.uri.split(':')[2];
-
+				history.push('/page=profile');
 				axios
-					.all([
-						axios
-							.create(headers)
-							.get(`https://api.spotify.com/v1/users/${id}/playlists`),
-					])
-					.then(
-						axios.spread((...responses) =>
-							this.setState({ userPlaylists: responses[0].data.items })
-						)
-					);
+					.create(headers)
+					.get(`https://api.spotify.com/v1/users/${id}/playlists`)
+					.then((response) => {
+						this.setState({ userPlaylists: response.data.items });
+					});
 			});
 	};
-
+	changeColorMode = () => {
+		this.setState({
+			colorMode: this.state.colorMode === 'Dark' ? 'Light' : 'Dark',
+		});
+	};
 	render() {
-		const { colorMode, userPlaylists } = this.state;
+		const {
+			colorMode,
+			userPlaylists,
+			userInfo,
+			contentPage,
+			access_token,
+		} = this.state;
 		return (
 			<Grid container className="whole-cont">
-				<Grid item className="a">
-					<IconButton
-						onClick={() =>
-							this.setState({
-								colorMode: this.state.colorMode === 'Dark' ? 'Light' : 'Dark',
-							})
-						}
-					>
-						<NightsStayIcon
-							className={`colorMode-c${colorMode === 'Dark' ? 'l' : 'd'}`}
-						/>
-					</IconButton>
-					<a href={loginUrl}>Login</a>
-				</Grid>
-				<Grid item xs={12} className="b" container>
-					<LeftNav colorMode={colorMode} userPlaylists={userPlaylists} />
-					<Grid item sm={8} className="right-cont"></Grid>
-				</Grid>
+				{userInfo !== null && (
+					<WindowsRoute
+						access_token={access_token}
+						userInfo={userInfo}
+						colorMode={colorMode}
+						currentPage={contentPage}
+						userPlaylists={userPlaylists}
+						changeColorMode={this.changeColorMode}
+					/>
+				)}
+				{userInfo === null && <LoginPage colorMode={colorMode} />}
+			</Grid>
+		);
+	}
+}
+export default withRouter(App);
 
-				{/* show user info */}
-				{/* {userInfo && (
+{
+	/* show user info */
+}
+{
+	/* {userInfo  &&   (
 						<div
 							style={{
 								display: 'flex',
@@ -86,10 +94,14 @@ class App extends Component {
 							</a>
 							<p>Followers: {userInfo.followers?.total}</p>
 						</div>
-					)} */}
+					)} */
+}
 
-				{/* show user playlists */}
-				{/* {userPlaylists.map((playlist, index) => {
+{
+	/* show user playlists */
+}
+{
+	/* {userPlaylists.map((playlist, index) => {
 						console.log(playlist);
 						return (
 							<p key={index}>
@@ -97,9 +109,5 @@ class App extends Component {
 								<p>{playlist.name}</p>
 							</p>
 						);
-					})} */}
-			</Grid>
-		);
-	}
+					})} */
 }
-export default App;

@@ -1,0 +1,40 @@
+.right-cont {
+	min-height: 100vh;
+}
+/* Profile Page Base*/
+.profile-image {
+	height: 192px;
+	border-radius: 200px;
+	box-shadow: 5px 5px 20px black;
+	border: 4px solid transparent;
+}
+.profile-info-text {
+	text-align: left;
+}
+
+@media screen and (max-width: 900px) {
+	.profile-image {
+		height: 100px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.profile-info-text {
+		align-items: center;
+	}
+}
+@media screen and (max-width: 400px) {
+	.display-name {
+		font-size: 2em !important;
+	}
+}
+/* Profile Page  Dark*/
+.dark .profile-top {
+	background-color: hsla(0, 0%, 0%, 0.815);
+	color: rgb(255, 255, 255);
+}
+/* Profile Page Light*/
+
+.light .profile-top {
+	background: rgba(255, 255, 255, 0.9);
+	color: rgb(0, 0, 0);
+}

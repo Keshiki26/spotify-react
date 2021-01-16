@@ -1,0 +1,60 @@
+/* Display Playlist Base */
+.displayPlaylist-cont {
+	padding: 20px;
+	align-self: flex-start !important;
+}
+
+.playlist-img-cont {
+	height: 200px;
+	padding: 10px;
+	width: 300px;
+	background-size: cover;
+	background-origin: border-box;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.public-playlist-heading {
+	font-size: 1.4em;
+	padding: 10px;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	text-align: center;
+}
+.displayPlaylist-playlistNames:hover {
+	text-decoration: underline;
+}
+@media screen and (max-width: 800px) {
+	.playlist-img-cont {
+		height: 140px;
+	}
+}
+@media screen and (max-width: 600px) {
+	.playlist-img-cont {
+		height: 100px;
+	}
+}
+@media screen and (max-width: 400px) {
+	.playlist-img-cont {
+		height: 50px;
+	}
+}
+/* Display Playlist light */
+.light .public-playlist-heading {
+	color: rgb(255, 255, 255);
+}
+.light .playlist-img-cont {
+	background-color: rgb(0, 0, 0);
+}
+.light .displayPlaylist-cont {
+	color: rgb(255, 255, 255);
+}
+/* Display Playlist dark */
+.dark .public-playlist-heading {
+	color: rgb(255, 255, 255);
+}
+.dark .playlist-img-cont {
+	background-color: rgb(255, 255, 255);
+}
+.dark .displayPlaylist-cont {
+	color: rgb(255, 255, 255);
+}

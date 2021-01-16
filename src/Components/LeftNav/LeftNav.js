@@ -11,6 +11,7 @@ export default class LeftNav extends Component {
 		return (
 			<Grid
 				item
+				xs={12}
 				sm={4}
 				className={`left-cont-${colorMode === 'Dark' ? 'dark' : 'light'}`}
 				container

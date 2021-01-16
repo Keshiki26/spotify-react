@@ -8,8 +8,8 @@ export default function SpotifyLogoCont(props) {
 			item
 			className="left-logo-cont"
 			container
-			justify="flex-start"
-			alignContent="center"
+			justify="center"
+			alignItems="center"
 		>
 			<SpotifyLogo
 				className={`spotify-logo ${
