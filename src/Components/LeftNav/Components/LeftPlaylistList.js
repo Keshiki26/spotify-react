@@ -1,5 +1,6 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function LeftPlaylistList(props) {
 	return (
@@ -13,9 +14,11 @@ export default function LeftPlaylistList(props) {
 						container
 						direction="row"
 					>
-						<Typography className="left-bot-contents-text">
-							{playlist.name}
-						</Typography>
+						<Link to={`/playlist/${playlist?.id}`}>
+							<Typography className="left-bot-contents-text">
+								{playlist.name}
+							</Typography>
+						</Link>
 					</Grid>
 				);
 			})}{' '}

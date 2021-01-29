@@ -2,6 +2,7 @@ import { Grid, Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import React from 'react';
 import './DisplayPlaylists.css';
+import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 
 export default function DisplayPlaylists(props) {
 	return props.userPlaylists.map((playlist) => {
@@ -19,15 +20,20 @@ export default function DisplayPlaylists(props) {
 				alignItems="center"
 				className="displayPlaylist-cont"
 			>
-				<Grid
-					item
-					className="playlist-img-cont"
-					style={{
-						backgroundImage: `url(${images[0].url})`,
-					}}
-				></Grid>
-				<Grid item container style={{ padding: '10px 0px' }}>
-					<Link to={`/page=playlist/current?playlist=${id}`}>
+				<Link to={`/playlist/${id}`} className="profile-playlist-link">
+					<Grid
+						item
+						className="playlist-img-cont"
+						justify="center"
+						alignItems="center"
+						container
+						style={{
+							backgroundImage: `url(${images[0].url})`,
+						}}
+					></Grid>
+				</Link>
+				<Grid item container>
+					<Link to={`/playlist/${id}`}>
 						<p className="displayPlaylist-playlistNames">{name}</p>
 					</Link>
 				</Grid>

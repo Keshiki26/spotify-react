@@ -1,0 +1,11 @@
+.playlistP-playlistImage {
+	height: 100%;
+	width: 100%;
+	background-size: contain;
+	background-origin: border-box;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+.playlistP-playlistImage-cont {
+	height: 20vh;
+}

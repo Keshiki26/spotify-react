@@ -12,7 +12,7 @@ export default class LeftNav extends Component {
 			<Grid
 				item
 				xs={12}
-				sm={4}
+				sm={3}
 				className={`left-cont-${colorMode === 'Dark' ? 'dark' : 'light'}`}
 				container
 				direction="column"

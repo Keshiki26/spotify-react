@@ -7,6 +7,19 @@ import { withRouter } from 'react-router-dom';
 import WindowsRoute from './WindowsRoute';
 import LoginPage from './LoginPage';
 // /#access_token=BQCPqe5K4sNm1Ml4XhG_sOedRBn2PNkO2uOhtR4b9b2fvQ3I3dEVpZOkpqgL8dO6j9h1DPOZEAjk7Eo69N8YFH7LvhqOwIAz5qjdfm5IhFtnMu2JcIvbLc350eboM3jF9pRe2qPQcM2gvwUUKT7N0DoX6w&token_type=Bearer&expires_in=3600
+
+// Next Steps:
+// 	Phase1
+// 		UI for individual Playlists
+// 		Add Links for the individual playlists properly all around
+// 		Links => API call => UI for Home, Search and Library
+// 		Fix up dark mode
+// 		Test navigation and functionality + improve code
+// 	Phase2
+// 		Add a Player
+// 		Change the left navigation to a drop down or something
+// 		Add different color options than just dark/light
+
 class App extends Component {
 	state = {
 		userInfo: null,
@@ -18,7 +31,6 @@ class App extends Component {
 
 	componentDidMount = () => {
 		const { match, location, history } = this.props;
-
 		const access_token = new URLSearchParams(
 			location.pathname.substring(1).split('&')[0]
 		).get('access_token');
@@ -32,7 +44,7 @@ class App extends Component {
 			.then((r) => {
 				this.setState({ userInfo: r.data, access_token });
 				const id = r.data.uri.split(':')[2];
-				history.push('/page=profile');
+				history.push('/profile');
 				axios
 					.create(headers)
 					.get(`https://api.spotify.com/v1/users/${id}/playlists`)

@@ -4,6 +4,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import React from 'react';
 import { Home } from '@material-ui/icons';
+import { Link } from 'react-router-dom';
 
 export default function LeftNavigation() {
 	return (
@@ -35,8 +36,14 @@ export default function LeftNavigation() {
 				direction="row"
 				className="left-top-contents"
 			>
-				<LibraryBooksIcon fontSize="large" />
-				<Typography className="left-top-contents-text">Your Library</Typography>
+				<Link to={`/profile/`}>
+					<LibraryBooksIcon fontSize="large" />
+				</Link>
+				<Link to={`/profile/`}>
+					<Typography className="left-top-contents-text">
+						Your Library
+					</Typography>
+				</Link>
 			</Grid>
 		</Grid>
 	);

@@ -1,10 +1,10 @@
 import { Button, Grid, Typography } from '@material-ui/core';
 import React from 'react';
+import loginUrl from './api.js';
 import { Link } from 'react-router-dom';
-import { loginUrl } from './api';
 import { ReactComponent as SpotifyLogo } from './Components/LeftNav/Components/spotifylogo.svg';
-
 import './LoginPage.css';
+
 export default function LoginPage(props) {
 	return (
 		<Grid

@@ -5,13 +5,20 @@
 }
 
 .playlist-img-cont {
-	height: 200px;
+	height: 100%;
 	padding: 10px;
-	width: 300px;
+	width: 100%;
 	background-size: cover;
 	background-origin: border-box;
 	background-position: center center;
 	background-repeat: no-repeat;
+}
+.profile-playlist-link {
+	height: 150px;
+	width: 300px;
+}
+.playlist-img-cont:hover {
+	filter: brightness(0.4);
 }
 .public-playlist-heading {
 	font-size: 1.4em;
