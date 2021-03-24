@@ -3,3 +3,4 @@
 ## Current Features
 * View Public Playlists
 * View individual playlists and songs
+* Responsive and clean UI
